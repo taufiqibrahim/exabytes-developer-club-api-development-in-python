@@ -8,9 +8,9 @@ services:
       - 5432:5432
     environment:
       LC_ALL: C.UTF-8
-      POSTGRES_USER: django
-      POSTGRES_PASSWORD: django.
-      POSTGRES_DB: django
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data/
     networks:
@@ -28,6 +28,13 @@ services:
       - 8000:8000
     volumes:
       - ./tutorial:/code/
+    environment:
+      - SECRET_KEY: ${SECRET_KEY}
+      - DB_NAME: ${DB_NAME}
+      - DB_USER: ${DB_USER}
+      - DB_PASSWORD: ${DB_PASSWORD}
+      - DB_HOST: ${DB_HOST}
+      - DB_PORT: ${DB_PORT}
     command: "python manage.py runserver 0.0.0.0:8000"
 volumes:
   pgdata:
