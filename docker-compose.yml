@@ -35,6 +35,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     command: "python manage.py runserver 0.0.0.0:8000"
 volumes:
   pgdata:
